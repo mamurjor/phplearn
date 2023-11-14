@@ -1,5 +1,12 @@
 <?php
 
-echo "<h1 class='hadi' style='color:red;'> Allah Mohan </h1>";
+
+
+
+include('common.php');
+include('lib.php');
+
+echo getFullName();
+
 
 ?>
