@@ -1,11 +1,7 @@
 <?php
+session_start();
 
-include("lib.php");
-
-
-$price = 10;
-$qty = 10;
-echo PriceCalculate($price,$qty);
+echo $_SESSION['key'];
 
 
 ?>
