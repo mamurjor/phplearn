@@ -2,9 +2,10 @@
 session_start();
 
 $username = $_POST['username'];
-$password = $_POST['password'];
+$password_user = $_POST['password'];
 
 // username = "admin" and password = 123456
+
 
 
 if($username=="admin" && $password=="123456"){

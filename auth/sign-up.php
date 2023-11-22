@@ -51,7 +51,20 @@
                     <div class="app-brand w-100 d-flex justify-content-center border-bottom-0">
                       <a class="w-auto pl-0" href="/index.html">
                         <img src="images/logo.png" alt="Mono">
-                        <span class="brand-name text-dark">MONO</span>
+                        <span class="brand-name text-dark">
+
+                      <?php
+                     
+
+                     if(isset($_GET['msg'])){
+
+                      echo $_GET['msg'];
+
+                     }
+                      
+                      ?>
+
+                        </span>
                       </a>
                     </div>
                   </div>
