@@ -1,52 +1,66 @@
 <?php
-  use PHPMailer\PHPMailer\PHPMailer; 
 
-  use PHPMailer\PHPMailer\Exception;
-  
-if(isset($_POST['name'])){       
-     
-    
-require 'PHPMailer/src/Exception.php';    
-require 'PHPMailer/src/PHPMailer.php';    
-require 'PHPMailer/src/SMTP.php';
-require_once("db/config.php");
+use PHPMailer\PHPMailer\PHPMailer; 
 
-    $name = $_POST['name'];
-   $usernmae = $_POST['usernmae'];
-$password = $_POST['password'];
-   
-   $code = rand(1,1000000);
-   
-   $query  = "INSERT INTO user(username,email,password,image,code)
-   VALUES('$name','$usernmae','$password','',$code)";
-   
-   $sql = $conn->query($query);
-   
-   if($sql){
+use PHPMailer\PHPMailer\Exception;
 
+   
+ 
 
-// mail send start 
+        require 'PHPMailer/src/Exception.php';
+
+        require 'PHPMailer/src/PHPMailer.php';
+
+        require 'PHPMailer/src/SMTP.php';
+
         // create object of PHPMailer class with boolean parameter which sets/unsets exception.
 
         $mail = new PHPMailer(true);     
-  
+        
+        
+        /*
+        
+        $phpmailer->isSMTP();
+$phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+$phpmailer->SMTPAuth = true;
+$phpmailer->Port = 2525;
+$phpmailer->Username = '7b4d71dbe6b3c9';
+$phpmailer->Password = '548790113c2271';
+        */
+
         try {
-            $mail->isSMTP(); // using SMTP protocol                                 
+
+            $mail->isSMTP(); // using SMTP protocol                                     
+
             $mail->Host = 'sandbox.smtp.mailtrap.io'; // SMTP host as gmail 
+
             $mail->SMTPAuth = true;  // enable smtp authentication                             
+
             $mail->Username = '7b4d71dbe6b3c9';  // sender gmail host              
+
             $mail->Password = '548790113c2271'; // sender gmail host password   
+            
+
+
             $mail->SMTPSecure = 'tls';  // for encrypted connection                           
+
             $mail->Port = 2525;   // port for SMTP     
+
             $mail->isHTML(true); 
+
             $mail->setFrom('hadijaman@gmail.com', "Sender"); // sender's email and name
+
             $mail->addAddress("mamurjorbd@gmail.com", "HADIJAMAN");  // receiver's email and name
+
             $headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n"; 
+
             $mail->Subject = 'Email verification From phplern';
-            $mail->Body    =  $code; 
+          
+              $mail->Body    =  "Love phplearn"; 
+
             $mail->send();
 
-            //echo 'Message has been sent';
+            echo 'Message has been sent';
 
         } catch (Exception $e) { // handle error.
 
@@ -54,26 +68,7 @@ $password = $_POST['password'];
 
         }
 
-// mail send end 
-
-
-
-
-
-
-       header("location: usercodeupdate.php");
-   }
-   else{
-    header("location: sign-up.php?msg=data Save  Not Done");
-   }
-   
-
-}
-else{
-    header("location: sign-up.php?msg=ai beta chor");
-}
-
-
+  
 
 
 
