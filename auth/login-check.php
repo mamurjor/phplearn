@@ -3,7 +3,7 @@
 session_start();
 
  $username = $_POST['username'];
- $password_user = $_POST['password'];
+ $password_user = md5($_POST['password']);
 
 // testpraampass
 // testparamname
@@ -11,10 +11,14 @@ session_start();
  $sql = $conn->query($query);
  
  // var_dump($sql);
+
+ 
  
  if($sql->num_rows>0){
      
+   $rows=$sql->fetch_assoc();
      $_SESSION['username']=$username;
+     $_SESSION['user_image']=$rows['image'];
     header("location: dashboard.php");
  }
  else{

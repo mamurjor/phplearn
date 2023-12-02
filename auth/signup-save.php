@@ -11,10 +11,30 @@ require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 require_once("db/config.php");
 
-    $name = $_POST['name'];
-   $usernmae = $_POST['usernmae'];
-$password = $_POST['password'];
-   
+$name = $_POST['name'];
+$usernmae = $_POST['usernmae'];
+$password= md5($_POST['password']);
+
+
+/*
+username and email unique check 
+
+*/
+
+
+$query = "SELECT * FROM user where username='$name' or email='$usernmae'";
+$sql = $conn->query($query);
+
+// var_dump($sql);
+
+if($sql->num_rows>0){
+
+    header("location: sign-up.php?msg=this is username and email already entry");
+
+}
+
+else{
+    
    $code = rand(1,1000000);
    
    $query  = "INSERT INTO user(username,email,password,image,code)
@@ -69,6 +89,11 @@ $password = $_POST['password'];
    
 
 }
+}
+
+
+
+   
 else{
     header("location: sign-up.php?msg=ai beta chor");
 }

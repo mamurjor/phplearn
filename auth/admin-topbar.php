@@ -314,7 +314,19 @@
                   <!-- User Account -->
                   <li class="dropdown user-menu">
                     <button class="dropdown-toggle nav-link" data-toggle="dropdown">
-                      <img src="images/user/user-xs-01.jpg" class="user-image rounded-circle" alt="User Image" />
+
+                    <?php
+                    
+                    if(isset($_SESSION['user_image'])){
+                       ?>
+                     <img src="<?php echo $_SESSION['user_image'];?>" class="user-image rounded-circle" alt="User Image" />
+                       <?php
+                    }
+                    else{
+                      echo ' <img src="images/user/user-xs-01.jpg" class="user-image rounded-circle" alt="User Image" />';
+                    }
+                    ?>
+                     
                       <span class="d-none d-lg-inline-block">
 
                             <?php 
@@ -327,9 +339,9 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <li>
-                        <a class="dropdown-link-item" href="user-profile.html">
+                        <a class="dropdown-link-item" href="user-profile.php">
                           <i class="mdi mdi-account-outline"></i>
-                          <span class="nav-text">My Profile</span>
+                          <span class="nav-text">Set Image</span>
                         </a>
                       </li>
                       <li>
